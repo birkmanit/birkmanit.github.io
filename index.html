@@ -17,6 +17,10 @@
     </style>
   </head>
   <body>
+    <div id="msg" style="font-size:largest;">
+    כבר עולה...  
+    </div>
+    <div id="body" style="display:none;">
     <div class="container">
       <div class="card border-dark mb-3" style="max-width: 20rem">
         <div class="card-header small">שאלון סיווג הוצאות של האישה שהפסיקה לקנות</div>
@@ -28,6 +32,7 @@
       </div>
       <div class="row">
         <a id="reset" href="#">להתחיל מחדש</a>
+      </div>
       </div>
     </div>
     <script type="text/javascript">
@@ -106,6 +111,10 @@
 
       $("#reset").click();
 
+      $(document).ready(function() {
+       $('#body').show();
+       $('#msg').hide();
+      });
     </script>
   </body>
 </html>
