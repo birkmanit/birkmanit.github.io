@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>שאלון סיווג הוצאות</title>
+    <style type="text/css">
+      .card, .card-title, .btn {
+        font-family: 'Heebo', sans-serif;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card border-dark mb-3 float-md-right" style="max-width: 20rem">
+        <div class="card-header small">שאלון סיווג הוצאות של האישה שהפסיקה לקנות</div>
+        <div class="card-body text-dark">
+          <h4 id="header" class="card-title text-center"></h4>
+          <p id="content" class="card-text">
+            <button id="yes" class="btn btn-outline-success" style="float: right">כן</button>
+            <button id="no" class="btn btn-outline-danger" style="float: left">לא</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      contents = [
+        [
+        `question`,
+        `האם ההוצאה הזו חיונית?`,
+        1,
+        2
+        ],
+        [
+        `question`,
+        `האם אני יודעת על מה אני משלמת?`,
+        4,
+        3
+        ],
+        [
+        `answer`,
+        `הוצאה לא חיונית?`,
+        `מצוין שאת מודעת לזה!<br/>
+התקציב שלנו מורכב גם מהוצאות שברור לגמרי שהן לא &quot;מאסט&quot;, אלה ההוצאות שבדרך כלל עושות את החיים שלנו נעימים.<br/>
+הן מתחילות להפריע כשהן באות על חשבון דברים חשובים, דחופים, הכרחיים או החלומות שלך לעתיד.<br/>
+הדרך להתמודד איתן היא להקצות להן אחוז מסוים מהתקציב, וכשהוא נגמר - לחכות לחודש הבא.<br/>
+תתחילי בסעיף אחד ותתקדמי משם :)`
+        ],
+        [
+        `answer`,
+        `לא יודעת על מה את משלמת, אבל ברור לך שזו הוצאה חיונית?`,
+        `זה הזמן להבין בדיוק ממה מורכבת ההוצאה שלך.<br/>
+ההוצאות הגדולות שלנו מורכבות מהוצאות קטנות יותר שנכנסות יחד לאותו סעיף תקציבי.<br/>
+אז... עכשיו את צריכה להרכיב לעצמך את תמונת ההוצאות הקטנות יותר.<br/>
+את הפענוח נעשה באמצעות החומרים שיש לנו: אם אלה קניות ספציפיות (מזון, הלבשה) - נציין לעצמנו כל פעם בצד מה קנינו. אם אלה הוצאות על מוצרים כמו ביטוח - באמצעות דפי הפירוט והמיילים מחברות הביטוח. ואם החשבונות נראים לך גבוהים בצורה חריגה - כדאי לבדוק את השעונים ולוודא שאין זליגות. <br/>
+עוד נדבר על זה הרבה בסדנת התקציב.`
+        ],
+        [
+        `answer`,
+        `מעולה!`,
+        `כעת פרטי לעצמך את כל מה שמרכיב את התשלום שלך, ובדקי לגבי כל מרכיב אם הוא חיוני.<br/>
+למשל, אם את יודעת שהוצאות המזון שלך כוללות: קניות שבועיות, השלמות אחת ליומיים ופעמיים בשבוע אכילה בחוץ בימים עמוסים, צייני זאת ברשימת מרכיבי התשלום. כעת בדקי לגבי כל סעיף אם הוא אכן חיוני או שאפשר לתכנן אותו טוב יותר.<br/>
+התכנון הוא לא בעיה: נדבר עליו הרבה <a href="http://www.birkman.online/product/budget_basics/">בסדנת התקציב</a>.`
+        ],
+      ];
+
+      function show_question(yes, no) {
+          $("#yes").click(function() {
+            show_content(yes);
+          });
+          $("#no").click(function() {
+            show_content(no);
+          });
+      }
+
+      function show_answer(answer) {
+        $("#content").html(answer);
+      }
+
+      function show_content(num) {
+        content = contents[num];
+        
+        $("#header").html(content[1]);
+        content[0] == 'question' ? show_question(content[2], content[3]) : show_answer(content[2]);
+      }
+
+      show_content(0);
+
+    </script>
+  </body>
+</html>
