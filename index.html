@@ -18,15 +18,16 @@
   </head>
   <body>
     <div class="container">
-      <div class="card border-dark mb-3 float-md-right" style="max-width: 20rem">
+      <div class="card border-dark mb-3" style="max-width: 20rem">
         <div class="card-header small">שאלון סיווג הוצאות של האישה שהפסיקה לקנות</div>
         <div class="card-body text-dark">
           <h4 id="header" class="card-title text-center"></h4>
           <p id="content" class="card-text">
-            <button id="yes" class="btn btn-outline-success" style="float: right">כן</button>
-            <button id="no" class="btn btn-outline-danger" style="float: left">לא</button>
           </p>
         </div>
+      </div>
+      <div class="row">
+        <a id="reset" href="#">התחל מחדש</a>
       </div>
     </div>
     <script type="text/javascript">
@@ -71,6 +72,10 @@
       ];
 
       function show_question(yes, no) {
+        $("#content").html(`
+          <button id="yes" class="btn btn-outline-success" style="float: right">כן</button>
+          <button id="no" class="btn btn-outline-danger" style="float: left">לא</button>`);
+
           $("#yes").click(function() {
             show_content(yes);
           });
@@ -84,13 +89,22 @@
       }
 
       function show_content(num) {
+        if (num == 0) {
+          $("#reset").hide();
+        } else {
+          $("#reset").show();
+        }
         content = contents[num];
         
         $("#header").html(content[1]);
         content[0] == 'question' ? show_question(content[2], content[3]) : show_answer(content[2]);
       }
 
-      show_content(0);
+      $("#reset").click(function() {
+        show_content(0);
+      });
+
+      $("#reset").click();
 
     </script>
   </body>
